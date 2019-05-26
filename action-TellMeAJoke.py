@@ -1,4 +1,3 @@
-from snipsTools import SnipsConfigParser
 from hermes_python.hermes import Hermes
 import requests
 from bs4 import BeautifulSoup
@@ -8,7 +7,7 @@ CONFIG_INI = "config.ini"
 
 MQTT_IP_ADDR = "localhost"
 MQTT_PORT = 1883
-MQTT_ADDR = "{}:{}".format(MQTT_IP_piADDR, str(MQTT_PORT))
+MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
 
 
 class JokeTeller(object):
@@ -41,7 +40,7 @@ class JokeTeller(object):
         print("[Received] intent: {}".format(intent_message.intent.intent_name))
 
         # if need to speak the execution result by tts
-        hermes.publish_start_session_notification(intent_message.site_id, joke)
+        hermes.publish_start_session_notification(intent_message.site_id, joke, "JokeTeller")
 
     # More callback function goes here...
 
