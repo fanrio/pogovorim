@@ -1,4 +1,4 @@
-#/usr/bin/env bash -e
+#!/usr/bin/env python3
 
 VENV=venv
 
@@ -9,7 +9,7 @@ then
 
     if [ ! -f $PYTHON ]
     then
-        echo "could not find python"
+        echo "could not find python 3"
     fi
     virtualenv -p $PYTHON $VENV
 
@@ -17,4 +17,4 @@ fi
 
 . $VENV/bin/activate
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
