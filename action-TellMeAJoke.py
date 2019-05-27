@@ -18,10 +18,10 @@ class JokeTeller(object):
 
     def __init__(self):
         # get the configuration if needed
-        try:
-            self.config = SnipsConfigParser.read_configuration_file(CONFIG_INI)
-        except :
-            self.config = None
+        # try:
+        #     self.config = SnipsConfigParser.read_configuration_file(CONFIG_INI)
+        # except :
+        #     self.config = None
 
         # start listening to MQTT
         self.start_blocking()
