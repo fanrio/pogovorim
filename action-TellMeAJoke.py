@@ -48,7 +48,7 @@ class JokeTeller(object):
     def master_intent_callback(self,hermes, intent_message):
         coming_intent = intent_message.intent.intent_name
         print(coming_intent)
-        if coming_intent == 'andreis:Erzaehl_ein_Witz':
+        if coming_intent == 'andreis:tellmeajocke':
             self.tellmejoke_callback(hermes, intent_message)
 
         # more callback and if condition goes here...
