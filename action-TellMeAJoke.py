@@ -5,9 +5,10 @@ from bs4 import BeautifulSoup
 
 CONFIG_INI = "config.ini"
 
-MQTT_IP_ADDR = "localhost"
+MQTT_IP_ADDR = "fanrio"
 MQTT_PORT = 1883
 MQTT_ADDR = "{}:{}".format(MQTT_IP_ADDR, str(MQTT_PORT))
+INTENT = "andreis:tellmeajocke"
 
 
 class JokeTeller(object):
@@ -47,8 +48,7 @@ class JokeTeller(object):
     # --> Master callback function, triggered everytime an intent is recognized
     def master_intent_callback(self,hermes, intent_message):
         coming_intent = intent_message.intent.intent_name
-        print(coming_intent)
-        if coming_intent == 'andreis:tellmeajocke':
+        if coming_intent == INTENT:
             self.tellmejoke_callback(hermes, intent_message)
 
         # more callback and if condition goes here...
@@ -56,7 +56,7 @@ class JokeTeller(object):
     # --> Register callback function and start MQTT
     def start_blocking(self):
         with Hermes(MQTT_ADDR) as h:
-            h.subscribe_intents(self.master_intent_callback).start()
+            h.subscribe_intent(INTENT, self.master_intent_callback).start()
 
 
 if __name__ == "__main__":
