@@ -4,6 +4,9 @@ from builtins import bytearray
 import requests
 from bs4 import BeautifulSoup
 
+"""
+Fehler mit import nur bei mir, da pip probleme hat.
+"""
 
 CONFIG_INI = "config.ini"
 
