@@ -31,11 +31,12 @@ class JokeTeller(object):
         # start listening to MQTT
         self.start_blocking()
 
-
-    def read_wav_data():
+    # --> Sub callback function
+    def register_sound(self):
         with open('joke_drum', 'rb') as f:
             read_data = f.read()
-        return bytearray(read_data)
+        return RegisterSoundMessage("joke_drum", bytearray(read_data))
+
 
 
     # --> Sub callback function, one per intent
@@ -76,10 +77,8 @@ class JokeTeller(object):
 
     # --> Register callback function and start MQTT
     def start_blocking(self):
-        sound_ba = self.read_wav_data( )
-        sound = RegisterSoundMessage("joke_drum",sound_ba)
         with Hermes(MQTT_ADDR) as h:
-            h.register_sound(sound)\
+            h.register_sound(self.register_sound) \
              .subscribe_intent(INTENT, self.master_intent_callback)\
              .start()
 
